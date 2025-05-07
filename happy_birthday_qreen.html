@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Qreen</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #ffafbd, #ffc3a0);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+    }
+    h1 {
+      font-size: 4em;
+      margin-top: 60px;
+      text-shadow: 0 0 20px #fff, 0 0 40px #ff69b4;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 30px #ff69b4; }
+    }
+    #hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://i.imgur.com/7xqKxMP.png') no-repeat;
+      background-size: cover;
+      animation: float 8s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    #surprise {
+      margin-top: 30px;
+      display: none;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #fff;
+      margin-top: 30px;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday, Qreen!</h1>
+  <p>Tumhari muskurahat meri duniya hai.</p>
+  <button onclick="showSurprise()">Click for Surprise!</button>
+  <div id="surprise">
+    <h2>Here's a sweet virtual cake for you!</h2>
+    <img src="https://i.imgur.com/vRAtM3i.png" alt="Cake" width="300">
+    <audio autoplay loop>
+      <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div id="hearts"></div>
+
+  <script>
+    function showSurprise() {
+      document.getElementById('surprise').style.display = 'block';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      document.getElementById('hearts').appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
